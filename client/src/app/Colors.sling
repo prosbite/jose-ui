@@ -1,0 +1,7 @@
+class :
+
+const NAV_SIDE_COLOR = "#3a3b50"
+const NAV_TOP_COLOR = "#2b2c3b"
+const BG_COLOR = "#545570"
+const NAV_INACTIVE = "#6e6f96"
+

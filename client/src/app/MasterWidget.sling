@@ -1,0 +1,135 @@
+import jk.widget.common
+import jk.widget
+import jk.lang
+
+class is TitledWidget #widget:
+
+ui LayerWidget
+{
+    VerticalScrollerWidget{
+        scrollBarDisabled = true
+        LayerWithBackgroundColorWidget {
+            color = Color.instance(Colors.BG_COLOR)
+            VerticalBoxWidget {
+                LayerWithBackgroundColorWidget {
+                    color = Color.instance(Colors.NAV_TOP_COLOR)
+                    HorizontalBoxWidget {
+                        fixedHeight = context.getHeightValue("50px")
+                        HorizontalBoxWidget {
+                            margin = context.getHeightValue("34px")
+                            marginTop = context.getHeightValue("15px")
+                            marginBottom = context.getHeightValue("15px")
+                            ButtonWithImageWidget {
+                                buttonImage = "logo"
+                                imageSize = context.getHeightValue("20px")
+                                clickHandler = func {
+                                    goToCashier()
+                                }
+                            }
+                        }
+                    }
+                }
+                HorizontalBoxWidget : 1.0 {
+                    LayerWithBackgroundColorWidget {
+                        color = Color.instance(Colors.NAV_SIDE_COLOR)
+                        VerticalBoxWidget {
+                            marginTop = context.getHeightValue("40px")
+
+                            LayerWithBackgroundColorWidget cashierBg {
+                                VerticalBoxWidget {
+                                    margin = context.getHeightValue("24px")
+                                    marginTop = context.getHeightValue("16px")
+                                    marginBottom = context.getHeightValue("16px")
+                                    spacing = context.getHeightValue("5px")
+
+                                    ButtonWithImageWidget cashierBtn {
+                                        buttonImage = "cashier_inactive"
+                                        imageSize = context.getHeightValue("30px")
+                                         clickHandler = func {
+                                            goToCashier()
+                                        }
+                                    }
+                                    LabelWidget cashierLbl {
+                                        text = "CASHIER"
+                                        textColor = Color.instance(Colors.NAV_INACTIVE)
+                                        fontSize = context.getHeightValue("7px")
+                                        textAlign = LabelWidget.ALIGN_CENTER
+                                    }
+                                }
+                            }
+                            LayerWithBackgroundColorWidget accountsBg {
+                                VerticalBoxWidget {
+                                    margin = context.getHeightValue("24px")
+                                    marginTop = context.getHeightValue("16px")
+                                    marginBottom = context.getHeightValue("16px")
+                                    spacing = context.getHeightValue("5px")
+                                    ButtonWithImageWidget accountsBtn {
+                                        buttonImage = "accounts_inactive"
+                                        imageSize = context.getHeightValue("30px")
+                                        clickHandler = func {
+                                            goToAccounts()
+                                        }
+                                    }
+                                    LabelWidget accountsLbl {
+                                        text = "ACCOUNTS"
+                                        textColor = Color.instance(Colors.NAV_INACTIVE)
+                                        fontSize = context.getHeightValue("7px")
+                                        textAlign = LabelWidget.ALIGN_CENTER
+                                    }
+                                }
+                            }
+                            // VerticalBoxWidget {
+                            //     spacing = context.getHeightValue("5px")
+                            //     ButtonWithImageWidget {
+                            //         buttonImage = "user_accounts"
+                            //         imageSize = context.getHeightValue("30px")
+                            //     }
+                            //     LabelWidget {
+                            //         text = "ACCOUNTS"
+                            //         textColor = Color.instance("#FFFFFF")
+                            //         fontSize = context.getHeightValue("7px")
+                            //         textAlign = LabelWidget.ALIGN_CENTER
+                            //     }
+                            // }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+func initializeWidget override
+{
+    base.initializeWidget()
+}
+
+func reset 
+{
+    cashierBg.setWidgetColor(Color.instance(Colors.NAV_SIDE_COLOR))
+    cashierBtn.setWidgetButtonImage("cashier_inactive")
+    cashierLbl.setWidgetTextColor(Color.instance(Colors.NAV_INACTIVE))
+
+    accountsBg.setWidgetColor(Color.instance(Colors.NAV_SIDE_COLOR))
+    accountsBtn.setWidgetButtonImage("accounts_inactive")
+    accountsLbl.setWidgetTextColor(Color.instance(Colors.NAV_INACTIVE))
+}
+
+func goToAccounts
+{
+    reset()
+    accountsBg.setWidgetColor(Color.instance(Colors.BG_COLOR))
+    accountsBtn.setWidgetButtonImage("user_accounts")
+    accountsLbl.setWidgetTextColor(Color.instance("#FFFFFF"))
+}
+
+func goToCashier
+{
+    reset()
+    cashierBg.setWidgetColor(Color.instance(Colors.BG_COLOR))
+    cashierBtn.setWidgetButtonImage("cashier")
+    cashierLbl.setWidgetTextColor(Color.instance("#FFFFFF"))
+}
+
+func getWidgetTitle as string:
+    return "CASHIER"
